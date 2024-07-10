@@ -1,0 +1,60 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "DF-ADEJUN24-DEV"
+		},
+		"LS_BLOB_connectionString": {
+			"value": ""
+		},
+		"LS_BLOB_KV_connectionString": {
+			"value": "DefaultEndpointsProtocol=https;AccountName=adlsjun24;"
+		},
+		"LS_SQL_password": {
+			"value": ""
+		},
+		"LS_SQL_PARAM_password": {
+			"value": ""
+		},
+		"AZURE_KV_properties_typeProperties_baseUrl": {
+			"value": "https://kv-ADEJUN24.vault.azure.net/"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "sqlserverjun24.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "ADEJun24-DB2"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "anand"
+		},
+		"LS_SQL_properties_typeProperties_server": {
+			"value": "sqlserverjun24.database.windows.net"
+		},
+		"LS_SQL_properties_typeProperties_database": {
+			"value": "ADEJun24-DB2"
+		},
+		"LS_SQL_properties_typeProperties_userName": {
+			"value": "anand"
+		},
+		"LS_SQL_PARAM_properties_typeProperties_server": {
+			"value": "sqlserverjun24.database.windows.net"
+		},
+		"LS_SQL_PARAM_properties_typeProperties_database": {
+			"value": "@{linkedService().DB_Name}"
+		},
+		"LS_SQL_PARAM_properties_typeProperties_userName": {
+			"value": "anand"
+		},
+		"Event_trigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/c0e319d5-11bc-4b14-bb8b-1a5464616a22/resourceGroups/RG-ADEJUN24/providers/Microsoft.Storage/storageAccounts/adlsjun24"
+		},
+		"Tumbling_Trigger_properties_pipeline_parameters_Window_Start_Time": {
+			"value": "@trigger().outputs.windowStartTime"
+		},
+		"Tumbling_Trigger_properties_pipeline_parameters_Window_End_Time": {
+			"value": "@trigger().outputs.windowEndTime"
+		}
+	}
+}

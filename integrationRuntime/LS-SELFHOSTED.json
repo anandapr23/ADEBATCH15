@@ -1,0 +1,6 @@
+{
+	"name": "LS-SELFHOSTED",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

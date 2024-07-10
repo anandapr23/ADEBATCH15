@@ -1,0 +1,90 @@
+{
+	"name": "Dynamic_Sql_Dbcopy",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Dynamic_DBnTable_sql",
+						"type": "DatasetReference",
+						"parameters": {
+							"Table_Name": {
+								"value": "@pipeline().parameters.Input_Table_Name",
+								"type": "Expression"
+							},
+							"DB_Name": {
+								"value": "@pipeline().parameters.Input_DB_Name",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Dynamic_DBnTable_sql",
+						"type": "DatasetReference",
+						"parameters": {
+							"Table_Name": {
+								"value": "@pipeline().parameters.Output_Table_Name",
+								"type": "Expression"
+							},
+							"DB_Name": {
+								"value": "@pipeline().parameters.OutPut_DB_Name",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"Input_DB_Name": {
+				"type": "string"
+			},
+			"OutPut_DB_Name": {
+				"type": "string"
+			},
+			"Input_Table_Name": {
+				"type": "string"
+			},
+			"Output_Table_Name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-07-02T03:38:24Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

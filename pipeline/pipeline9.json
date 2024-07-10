@@ -1,0 +1,138 @@
+{
+	"name": "pipeline9",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable2",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Test_Var",
+					"value": {
+						"value": "@variables('temp_var')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable3",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "temp_var",
+					"value": {
+						"value": "@pipeline().parameters.addnumber",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable4",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "temp_var",
+					"value": {
+						"value": "@add(variables('Test_Var'),pipeline().parameters.addnumber)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable5",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable4",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Test_Var",
+					"value": {
+						"value": "@variables('temp_var')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "parameterval",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable5",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "temp_var",
+					"value": {
+						"value": "@pipeline().parameters.addnumber",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"addnumber": {
+				"type": "int"
+			}
+		},
+		"variables": {
+			"Test_Var": {
+				"type": "Integer",
+				"defaultValue": 0
+			},
+			"temp_var": {
+				"type": "Integer",
+				"defaultValue": 0
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-07-05T04:00:26Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

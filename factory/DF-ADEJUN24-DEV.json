@@ -1,0 +1,9 @@
+{
+	"name": "DF-ADEJUN24-DEV",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "dff42841-17bc-4f31-8039-c5486ce01317",
+		"tenantId": "8052396d-23ae-40f7-8405-c95f2f898d4e"
+	}
+}
